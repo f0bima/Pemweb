@@ -19,8 +19,7 @@ if (isset($_GET['op'])) {
             header("Location: index.php");            
         }
         else{
-            $statuslogin =false;
-            $message = "Login Gagal. Silakan ulangi";
+            $statuslogin =false;            
         }
     }
 }
@@ -71,9 +70,8 @@ if (isset($_GET['op'])) {
                         if (isset($_GET['op'])) {
                             if ($statuslogin==false) {
                     ?>
-                            <div class="alert alert-warning" role="alert">
-                                            LOGIN GAGAL
-                                        </div>
+                            <div class="alert alert-warning" role="alert">LOGIN GAGAL
+                            </div>
                     <?php  
                         }
                     }

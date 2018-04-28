@@ -78,8 +78,22 @@ include 'ceklogin.php';
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">Data Table</strong>
+                            <strong class="card-title">Data Mahasiswa</strong>
                         </div>
+                        <?php 
+                    if (@($_GET['op']=="up")) { 
+                    ?>
+                        <div class="alert alert-warning" role="alert">EDIT BERHASIL
+                        </div>
+                    <?php                          
+                    }
+                    else if (@($_GET['op']=="del")) { 
+                    ?>
+                        <div class="alert alert-warning" role="alert">DELETE BERHASIL
+                        </div>
+                    <?php 
+                    }
+                    ?>
                         <div class="card-body">
                   <table id="bootstrap-data-table" class="table table-striped table-bordered">
                     <thead>
@@ -89,6 +103,7 @@ include 'ceklogin.php';
                         <th>ALAMAT</th>
                         <th>TGL LAHIR</th>
                         <th>GENDER</th>
+                        <th>EDIT</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -100,11 +115,13 @@ include 'ceklogin.php';
                                 echo "<tr>
                                 <td>".$data['nim']."</td>
                                 <td>".$data['namamhs']."</td>
-                                <td>".$data['tgl']."</td>
                                 <td>".$data['alamat']."</td>
+                                <td>".$data['tgl']."</td>
                                 <td>".$data['jk']."</td>
+                                <td><a href='delete.php?nim=".$data['nim']."'>HAPUS</a> | <a href='edit.php?nim=".$data['nim']."'>EDIT</td>
                                 </tr>";
                             }                            
+                            $conn->close();
                         ?>
                         
                         
