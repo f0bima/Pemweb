@@ -1,3 +1,9 @@
+<?php
+session_start(); 
+if (isset($_SESSION['login'])) {
+    header("Location: ./");
+}
+?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -39,6 +45,20 @@
                     </a>
                 </div>
                 <div class="login-form">
+                    <?php
+                    if (@$_GET['reg']=="1") {
+                    ?>
+                            <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show"><span class="badge badge-pill badge-primary">GAGAL</span>FORM TIDAK BOLEH KOSONG
+                            </div>
+                    <?php
+                            }                        
+                    elseif (@$_GET['reg']=="2") {
+                    ?>
+                            <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show"><span class="badge badge-pill badge-primary">GAGAL</span>REGISTRASI GAGAL
+                            </div>
+                    <?php
+                            }
+                    ?>
                     <form method="post" action="page-register-proses.php">
                         <div class="form-group">
                             <label>User Name</label>
@@ -65,7 +85,7 @@
                             </div>
                         </div>
                         <div class="register-link m-t-15 text-center">
-                            <p>Already have account ? <a href="#"> Sign in</a></p>
+                            <p>Already have account ? <a href="page-login.php"> Sign in</a></p>
                         </div>
                     </form>
                 </div>

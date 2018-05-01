@@ -7,7 +7,7 @@ if (isset($_GET['op'])) {
     if ($_GET['op']=='proses') {
         include 'db.php';
         $email = $_POST['email'];
-        $pass = $_POST['pass'];
+        $pass = md5($_POST['pass']);
         $sql = "SELECT * from users where email='$email'";
         $hasil = mysqli_query($conn, $sql);
         $data = mysqli_fetch_array($hasil);
@@ -75,6 +75,14 @@ if (isset($_GET['op'])) {
                     <?php  
                         }
                     }
+                        if (isset($_GET['reg'])) {
+                            if ($_GET['reg']=="1") {
+                    ?>
+                            <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show"><span class="badge badge-pill badge-primary">Success</span>REGISTER SUKSES
+                            </div>
+                    <?php
+                            }
+                        }
                     ?>
                     <form method="post" action="page-login.php?op=proses">
                         <div class="form-group">
@@ -102,7 +110,7 @@ if (isset($_GET['op'])) {
                             </div>
                         </div>
                         <div class="register-link m-t-15 text-center">
-                            <p>Don't have account ? <a href="#"> Sign Up Here</a></p>
+                            <p>Don't have account ? <a href="page-register.php"> Sign Up Here</a></p>
                         </div>
                     </form>
                 </div>

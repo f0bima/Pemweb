@@ -11,7 +11,7 @@ include 'ceklogin.php';
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>PEMWEB-MAHASISWA</title>
+    <title>PEMWEB-DOSEN</title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -74,13 +74,12 @@ include 'ceklogin.php';
         <div class="content mt-3">
             <div class="animated fadeIn">
                 <div class="row">
-                    <a href=""></a>
+
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">Data Mahasiswa</strong>             
+                            <strong class="card-title">Data Dosen</strong>
                             <button type="button" class="btn btn-warning float-right" data-toggle="modal" data-target="#tambah"><i class="fa fa-map-marker"></i>&nbsp; TAMBAH</button>
-                
                         </div>
                         <?php 
                     if (@($_GET['op']=="up")) { 
@@ -103,25 +102,24 @@ include 'ceklogin.php';
                     }
                     else if (@($_GET['add']=="2")) { 
                     ?>
-                        <div class="alert alert-warning" role="alert">BERHASIL MENAMBAH MAHASISWA
+                        <div class="alert alert-warning" role="alert">BERHASIL MENAMBAH DOSEN
                         </div>
                     <?php 
                     }
                     else if (@($_GET['add']=="3")) { 
                     ?>
-                        <div class="alert alert-warning" role="alert">GAGAL MENAMBAH MAHASISWA
+                        <div class="alert alert-warning" role="alert">GAGAL MENAMBAH DOSEN
                         </div>
                     <?php 
                     }
-                    ?>                    
+                    ?>
                         <div class="card-body">
                   <table id="bootstrap-data-table" class="table table-striped table-bordered">
                     <thead>
                       <tr>
-                        <th>NIM</th>
-                        <th>NAMA MAHASISWA</th>
-                        <th>ALAMAT</th>
-                        <th>TGL LAHIR</th>
+                        <th>NIP</th>
+                        <th>NAMA DOSEN</th>
+                        <th>ALAMAT</th>                        
                         <th>GENDER</th>
                         <th>EDIT</th>
                       </tr>
@@ -129,18 +127,17 @@ include 'ceklogin.php';
                     <tbody>
                         <?php 
                         
-                            $sql="SELECT * from mhs ORDER BY nim";
+                            $sql="SELECT * from dosen ORDER BY nip";
                             $hasil= mysqli_query($conn, $sql);
                             while($data = mysqli_fetch_array($hasil)){
                                 echo "<tr>
-                                <td>".$data['nim']."</td>
-                                <td>".$data['namamhs']."</td>
-                                <td>".$data['alamat']."</td>
-                                <td>".$data['tgl']."</td>
+                                <td>".$data['nip']."</td>
+                                <td>".$data['namadsn']."</td>
+                                <td>".$data['alamat']."</td>       
                                 <td>".$data['jk']."</td>
                                 <td>                                
-                                <a href='edit.php?nim=".$data['nim']."' class='btn btn-secondary'>EDIT </a>
-                                <a href='delete.php?nim=".$data['nim']."' class='btn btn-danger'>HAPUS</a> 
+                                <a href='edit.php?nip=".$data['nip']."' class='btn btn-secondary'>EDIT </a>
+                                <a href='delete.php?nip=".$data['nip']."' class='btn btn-danger'>HAPUS</a> 
 
                                 </td>
                                 </tr>";
@@ -150,30 +147,30 @@ include 'ceklogin.php';
                       
                     </tbody>
                   </table>
-                        </div>
-                    </div>
                 </div>
+            </div>
+        </div>
 
 
-                </div>                
-
+                </div>
             </div><!-- .animated -->
         </div><!-- .content -->
+
         <div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="mediumModalLabel">TAMBAH MAHASISWA</h5>
+                                <h5 class="modal-title" id="mediumModalLabel">TAMBAH DOSEN</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="tambah-mhs.php" method="POST">
+                                <form action="tambah-dsn.php" method="POST">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <div class="input-group-addon">NIM</div>
-                                        <input type="text" name="nim" class="form-control">
+                                    <div class="input-group-addon">NIP</div>
+                                        <input type="text" name="nip" class="form-control">
                                         <div class="input-group-addon">
                                         <i class="fa fa-user"></i></div>
                                 </div>
@@ -185,15 +182,7 @@ include 'ceklogin.php';
                                         <div class="input-group-addon">
                                         <i class="fa fa-user"></i></div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-addon">TGL/LAHIR</div>
-                                        <input type="date" name="tgl" class="form-control">
-                                        <div class="input-group-addon">
-                                        <i class="fa fa-user"></i></div>
-                                </div>
-                            </div>
+                            </div>                            
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon">ALAMAT</div>
@@ -224,7 +213,6 @@ include 'ceklogin.php';
                         </div>
                     </div>
                 </div>
-
 
     </div><!-- /#right-panel -->
 

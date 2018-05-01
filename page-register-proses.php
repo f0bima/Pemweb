@@ -46,23 +46,16 @@
                     $pass = md5($_POST['pass']);
 
                     $sql = "INSERT INTO users (fullname, email, pass) VALUES ('$user', '$email', '$pass')";
-                    
-                    if ($conn->query($sql)) {
-                        ?>
-                        <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
-                                            <span class="badge badge-pill badge-danger">Success</span>
-                                                REGISTER SUKSES
-                                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                        <?php
-                    } else {
-                        ?>
-                        <div class="alert alert-warning" role="alert">
-                                            REGISTER GAGAL
-                                        </div>
-                        <?php 
+                    if (empty($user) || empty($email) || empty($_POST['pass'])) {
+                        header("Location: page-register.php?reg=1");
+                    }
+                    else{
+                        if ($conn->query($sql)) {
+                            header("Location: page-login.php?reg=1");
+                        }                     
+                        else {
+                            header("Location: page-register.php?reg=2");
+                        }
                     }
                     ?>                    
 

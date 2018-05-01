@@ -10,7 +10,17 @@ include 'ceklogin.php';
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sufee Admin - HTML5 Admin Template</title>
+    <?php                         
+        if (isset($_GET['nim'])) {
+            echo "<title>PEMWEB-EDIT MAHASISWA</title>";
+        }
+        elseif (isset($_GET['nip'])) {
+            echo "<title>PEMWEB-EDIT DOSEN</title>";
+        }
+        elseif (isset($_GET['kodemk'])) {
+            echo "<title>PEMWEB-EDIT MATKUL</title>";
+        }
+    ?>                            
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -52,7 +62,17 @@ include 'ceklogin.php';
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Dashboard</h1>
+                        <?php                         
+                        if (isset($_GET['nim'])) {
+                            echo "<h1>EDIT MAHASISWA</h1>";
+                        }
+                        elseif (isset($_GET['nip'])) {
+                            echo "<h1>EDIT DOSEN</h1>";
+                        }
+                        elseif (isset($_GET['kodemk'])) {
+                            echo "<h1>EDIT MATA KULIAH</h1>";
+                        }
+                        ?>                        
                     </div>
                 </div>
             </div>
@@ -88,11 +108,20 @@ include 'ceklogin.php';
                         </div>
                     <?php 
                     }
-                    ?>
+                    ?>                    
 
                     <div class="card-body card-block">
                     <?php 
-                    include 'edit-mhs.php';
+                    if (isset($_GET['nim'])) {
+                        include 'edit-mhs.php';
+                    }
+                    elseif (isset($_GET['nip'])) {
+                        include 'edit-dsn.php';
+                    }
+                    elseif (isset($_GET['kodemk'])) {
+                        include 'edit-mk.php';
+                    }
+                    
                     ?>
                     </div>
                     </div>
